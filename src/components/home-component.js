@@ -1,6 +1,11 @@
 import React from "react";
-
+import AuthService from "../services/auth.service";
+import { Link, useNavigate } from "react-router-dom";
 const HomeComponent = () => {
+  let navigate = useNavigate();
+  const handleButton1 = () => {
+    navigate("/login");
+  };
   return (
     <main>
       <div className="container py-4">
@@ -12,13 +17,12 @@ const HomeComponent = () => {
               作為後端服務器。這種項目稱為 MERN
               項目，它是創建現代網站的最流行的方式之一。
             </p>
-            <button className="btn btn-primary btn-lg" type="button">
-              <a
-                href="/register"
-                style={{ textDecoration: "none", color: "white" }}
-              >
-                看看它怎麼運作。
-              </a>
+            <button
+              className="btn btn-primary btn-lg"
+              type="button"
+              onClick={handleButton1}
+            >
+              看看它怎麼運作。
             </button>
           </div>
         </div>
@@ -32,7 +36,7 @@ const HomeComponent = () => {
               </p>
               <button className="btn btn-secondary" type="button">
                 <a
-                  href="/login"
+                  href="/register"
                   style={{ textDecoration: "none", color: "white" }}
                 >
                   登錄會員、或者註冊一個帳號
@@ -47,7 +51,13 @@ const HomeComponent = () => {
                 您可以通過註冊成為一名講師，並開始製作在線課程。本網站僅供練習之用，請勿提供任何個人資料，例如信用卡號碼。
               </p>
               <button className="btn btn-outline-secondary" type="button">
-                今天開始開設課程
+                <a
+                  href="/login"
+                  style={{ textDecoration: "none", color: "black" }}
+                >
+                  {" "}
+                  今天開始開設課程
+                </a>
               </button>
             </div>
           </div>
