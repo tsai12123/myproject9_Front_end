@@ -14,7 +14,7 @@ const HomeComponent = () => {
             </p>
             <button className="btn btn-primary btn-lg" type="button">
               <a
-                href="/login"
+                href="/register"
                 style={{ textDecoration: "none", color: "white" }}
               >
                 看看它怎麼運作。
