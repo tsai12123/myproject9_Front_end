@@ -69,10 +69,6 @@ const HomeComponent = () => {
             </div>
           </div>
         </div>
-
-        <footer className="pt-3 mt-4 text-muted border-top">
-          &copy; 2023 BO Chen
-        </footer>
       </div>
     </main>
   );
