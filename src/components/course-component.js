@@ -38,7 +38,7 @@ const CourseComponent = ({ currentUser, setCurrentUser }) => {
     if (!confirmDelete) {
       return;
     }
-    CourseSever.delete(courseId)
+    CourseService.delete(courseId)
       .then((data) => {
         console.log(data);
         window.alert("課程成功刪除!");
