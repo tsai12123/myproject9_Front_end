@@ -33,6 +33,22 @@ const CourseComponent = ({ currentUser, setCurrentUser }) => {
     }
   }, []);
 
+  const handledelete = (courseId) => {
+    const confirmDelete = window.confirm("您確定要刪除此課程嗎?");
+    if (!confirmDelete) {
+      return;
+    }
+    CoursesSever.delete(courseId)
+      .then((data) => {
+        console.log(data);
+        window.alert("課程成功刪除!");
+        window.location.reload();
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
   return (
     <div style={{ padding: "3rem" }}>
       {!currentUser && (
@@ -56,13 +72,17 @@ const CourseComponent = ({ currentUser, setCurrentUser }) => {
           <h1>歡迎來到學生的課程頁面。</h1>
         </div>
       )}
-      {currentUser && courseData && courseData.length != 0 && (
+      {currentUser && courseData && courseData.length !== 0 && (
         <div style={{ display: "flex", flexWrap: "wrap" }}>
           {courseData.map((course) => {
             return (
-              <div className="card" style={{ width: "18rem", margin: "1rem" }}>
+              <div
+                className="card"
+                style={{ width: "18rem", margin: "1rem" }}
+                key={course._id}
+              >
                 <div className="card-body">
-                  <h5 className="card-title">課程名稱:{course.title}</h5>
+                  <h5 className="card-title">課程名稱: {course.title}</h5>
                   <p style={{ margin: "0.5rem 0rem" }} className="card-text">
                     {course.description}
                   </p>
@@ -72,6 +92,16 @@ const CourseComponent = ({ currentUser, setCurrentUser }) => {
                   <p style={{ margin: "0.5rem 0rem" }}>
                     課程價格: {course.price}
                   </p>
+                  {currentUser && currentUser.user.role === "instructor" && (
+                    <button
+                      style={{ margin: "0.5rem 0rem" }}
+                      type="button"
+                      className="btn btn-primary"
+                      onClick={() => handledelete(course._id)}
+                    >
+                      刪除課程
+                    </button>
+                  )}
                 </div>
               </div>
             );
